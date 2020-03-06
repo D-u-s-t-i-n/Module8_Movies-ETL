@@ -14,6 +14,7 @@ fill_missing_kaggle_data
 * The program assumes the graders have their postgre login info ready in their own config.py file
 * For grading, the same dataset will be used for test so I did not upload the large ~700 MB file. If generating the raw data was part of the exercise, I would have put effort to upload the large raw data files.
 * Processed data should not be deleted, so they are moved to -- Separate from new incoming data -- Prevent the same data from being run over and over again.
+* The three data files are assumed to be cumulative data, so the tables are being replaced by deletion and reuploading (per challenge instruction) rather than appending.
 
 ## Areas of Improvement
 Due to my limited Python ability and time constraints, I see the following possible areas for improvement.
