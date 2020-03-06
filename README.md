@@ -1,55 +1,22 @@
-# Module8_Movies-ETL
+# Module8_Movies-ETL (Challenge Notes)
 
-## Module Notes
+## The challenge.py contains:
+* LoadData initial main function that accepts 3 filenames (kaggle, wiki, and ratings). If all files are present, it will call the next function.
+* CleanData function is called after confirming the 3 data files exist. Data cleaning sub functions are called from here:
+fill_missing_kaggle_data
+- parse_dollars
+- clean_movie
+* UploadToDatabase is called after successful cleaning. A global boolean variable bool_success is used to track if any exceptions were caught during the cleaning process and prevent the data files from being marked processed.
 
-import json
-import pandas as pd
-import numpy as np
-file_dir = 'C:/Users/Username/DataBootcamp/'
-f'{file_dir}filename'
+## Assumptions
+* The raw data format remains the same (kaggle csv, ratings csv, wiki json).
+* The data column formatting messiness is not too deviated from the one given in the module lessons. Since we are not given any other data sources, it is difficult to test and account for all potential formats that may cause the cleanup function to fail. Try-except was added for dropping duplicate imdb ids.
+* The program assumes the graders have their postgre login info ready in their own config.py file
+* For grading, the same dataset will be used for test so I did not upload the large ~700 MB file. If generating the raw data was part of the exercise, I would have put effort to upload the large raw data files.
+* Processed data should not be deleted, so they are moved to -- Separate from new incoming data -- Prevent the same data from being run over and over again.
 
-with open(f'{file_dir}/wikipedia.movies.json', mode='r') as file:
-    wiki_movies_raw = json.load(file)
-len(wiki_movies_raw)
-
-# First 5 records
-wiki_movies_raw[:5]
-
-# Last 5 records
-wiki_movies_raw[-5:]
-
-# Some records in the middle
-wiki_movies_raw[3600:3605]
-
-## Kaggle
-
-kaggle_metadata = pd.read_csv(f'{file_dir}movies_metadata.csv')
-ratings = pd.read_csv(f'{file_dir}ratings.csv')
-
-
-# Inspect Plan Execute
-wiki_movies_df = pd.DataFrame(wiki_movies_raw)
-wiki_movies_df.head()
-wiki_movies_df.columns.tolist()
-
-if ('Director' in movie or 'Directed by' in movie) and 'imdb_link' in movie
-
-wiki_movies = [movie for movie in wiki_movies_raw
-               if ('Director' in movie or 'Directed by' in movie)
-                   and 'imdb_link' in movie]
-len(wiki_movies)
-# 7,080
-
-wiki_movies = [movie for movie in wiki_movies_raw
-               if ('Director' in movie or 'Directed by' in movie)
-                   and 'imdb_link' in movie
-                   and 'No. of episodes' not in movie]
-# Lamda
-square = lambda x: x * x
-square(5)
-
-def clean_movie(movie):
-    movie = dict(movie) #create a non-destructive copy
-    return movie
-    
-wiki_movies_df[wiki_movies_df['Arabic'].notnull()]
+## Areas of Improvement
+Due to my limited Python ability and time constraints, I see the following possible areas for improvement.
+* In the loaddata function, I think the if-else file check portion can be replaced by try-exception.
+* For database upload, it's standard practice to check for existing records and append rather than delete and re-upload.
+* Rather than running the python code periodically, the main program could be calling the loaddata function in a do-while loop to be continuously monitoring/polling for new data files (kaggle, wiki, and ratings).
