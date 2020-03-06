@@ -1,6 +1,6 @@
 # Module8_Movies-ETL (Challenge Notes)
 
-## The challenge.py contains:
+## The challenge.py contains:  
 ### LoadData initial main function that accepts 3 filenames (kaggle, wiki, and ratings). If all files are present, it will call the next function.
 ### CleanData function is called after confirming the 3 data files exist. Data cleaning sub functions are called from here:
 - fill_missing_kaggle_data
