@@ -1,12 +1,12 @@
 # Module8_Movies-ETL (Challenge Notes)
 
 ## The challenge.py contains:
-* LoadData initial main function that accepts 3 filenames (kaggle, wiki, and ratings). If all files are present, it will call the next function.
-* CleanData function is called after confirming the 3 data files exist. Data cleaning sub functions are called from here:
+1. LoadData initial main function that accepts 3 filenames (kaggle, wiki, and ratings). If all files are present, it will call the next function.
+2. CleanData function is called after confirming the 3 data files exist. Data cleaning sub functions are called from here:
 fill_missing_kaggle_data
-...###### parse_dollars
-...###### clean_movie
-* UploadToDatabase is called after successful cleaning. A global boolean variable bool_success is used to track if any exceptions were caught during the cleaning process and prevent the data files from being marked processed.
+- parse_dollars
+- clean_movie
+3. UploadToDatabase is called after successful cleaning. A global boolean variable bool_success is used to track if any exceptions were caught during the cleaning process and prevent the data files from being marked processed.
 
 ## Assumptions
 * The raw data format remains the same (kaggle csv, ratings csv, wiki json).
