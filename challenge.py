@@ -178,7 +178,7 @@ def CleanData(df_wiki, df_kag, df_rate):
     
         movies_with_ratings_df[rating_counts.columns] = movies_with_ratings_df[rating_counts.columns].fillna(0)
         
-        # UploadToDatabase(str_database, movies_df)
+        UploadToDatabase(str_database, movies_df)
         print('Data clean + upload complete')
     except Exception as e:
         print(e)
