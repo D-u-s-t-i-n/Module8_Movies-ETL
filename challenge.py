@@ -180,10 +180,11 @@ def CleanData(df_wiki, df_kag, df_rate):
         
         UploadToDatabase(str_database, movies_df)
         print('Data clean + upload complete')
+        global bool_success
+        bool_success = True
     except Exception as e:
         print(e)
-    global bool_success
-    bool_success = True
+    
 
 def UploadToDatabase(str_dbstring, dataframe):
     db_string = str_dbstring
